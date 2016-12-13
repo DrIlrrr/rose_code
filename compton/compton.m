@@ -9,15 +9,12 @@ rflags.compton=1;
 % el.NUMBER_OF_MACROPARTICLES=1e3;
 [beam_1] = electron_beam_initial;
 
-
 %% create a laser beam
 [beam_2] = create_laser_beam;
-
 
 %%
 % beam_1(:,4)=-beam_1(:,7);
 % beam_2(:,4)=-beam_2(:,7);
-
 
 %% create a second beam as the reflection of first one
 beam_2(:,4)=-beam_2(:,4);
