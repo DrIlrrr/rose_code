@@ -1,8 +1,8 @@
-function final_plot_for_TPP%(pcm_tot,gammacm_tot,Ecm_tot,weight_1,weight_2,delta_x,delta_y)
+function final_plot_for_TPP
 % plot final plot for E_cm Gamma_cm_and N events
 global ifig save_dir rflags
 if rflags.TPP==1
-    
+
 %     save_dir=[pwd '/TPP_260_sigma_end_cut_2_L_0/nbin_x_21_y_21_z_21/'];
 
 filename=[save_dir 'N_pairvents_'];
@@ -10,7 +10,7 @@ load([save_dir 'main_out_put.dat'],'-mat');
 ad=load([save_dir 'out_put.dat'],'-mat');
 % pair_info=[Vq E_3 E_4 theta_3 theta_4 phi_3 phi_4 cos_alpha cos_theta Ecm_pair gamma_cm_pair];
 
- 
+
 
 
 %% Make a histogram of E_CoM
@@ -323,14 +323,14 @@ fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     print('-depsc', fname);
 print('-r300','-dpng', fname2);
 
-    
+
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
 %     else
 %         figure('visible','off');
 %     end
-%     
+%
 %     nbin_plot=20;
 %     xs_gtot=linspace(min(gammacm_tot),max(gammacm_tot),nbin_plot);
 %     bar(xs_gtot,hist(gammacm_tot,nbin_plot)*weight_1*weight_2,'grouped')%,'hist','g')
@@ -343,21 +343,21 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
-%     
-%     
-%     
+%
+%
+%
+%
 %     %%
-%     
-%     
-%     
+%
+%
+%
 %     bin_windnes=25;
 %     nbin_plot=floor((max(Ecm_tot)*1e-6-min(Ecm_tot)*1e-6)/bin_windnes);% nbin to make spectrum per KeV
 %     xs_tot=linspace(min(Ecm_tot)*1e-6,max(Ecm_tot)*1e-6,nbin_plot);
 %     %      bar(xs_tot,hist(Ecm_tot,nbin_plot)*weight_1*weight_2,'grouped')%,'hist','g')
-%     
+%
 %     num_e=hist(Ecm_tot,nbin_plot)*weight_1*weight_2;
-%     
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -377,15 +377,15 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
+%
 %     %     figure(646446)
 %     %     plot(xs_tot)
 %     K=((xs_tot).^2-(0.511)^2)./(2.*(0.511)^2);
 %     %      figure(646445)
 %     %     plot(xs_tot,K)
-%     
-%     
-%     
+%
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -405,7 +405,7 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
+%
 %     %     if K>=4 && K<=4.6 % tut nado ispolsovat find ili cikl
 %     %     f_1=(5.6+20.4.*(K-4)-10.9.*(K-4).^2-3.6.*(K-4).^3+7.4.*(K-4).^4).*1e-3.*(K-4).^2;
 %     %     end
@@ -429,32 +429,32 @@ print('-r300','-dpng', fname2);
 %     %
 %     %     % tottal_cross=1e-33.*(sec_BH-sec_B).*weight_1.*weight_2./(4.*pi.*delta_x.*delta_y.*1e4);
 %     %     tottal_cross=1e-33.*(sec_BH-sec_B)./(4.*pi.*delta_x.*delta_y.*1e4);
-%     
+%
 %     %% cross-section block
-%     
-%     
+%
+%
 %     alpha=1/137;
 %     re=2.817e-15;
-%     
+%
 %     K=((xs_tot).^2-(0.511)^2)./(2.*(0.511)^2);
 %     % K=[4:0.01:1000];
 %     part_1=find(K>4 & K<=4.6);
 %     f_1=(5.6+20.4.*(K(part_1)-4)-10.9.*(K(part_1)-4).^2-3.6.*(K(part_1)-4).^3+7.4.*(K(part_1)-4).^4).*1e-3.*(K(part_1)-4).^2;
-%     
+%
 %     part_2=find(K>4.6 & K<=6);
 %     f_2=0.582814-0.29842.*K(part_2)+0.04354.*K(part_2).^2-0.0012977.*K(part_2).^3;
-%     
+%
 %     part_3=find(K>6 & K<=18);
 %     f_3=(3.1247-1.3394.*K(part_3)+0.14612.*K(part_3).^2)./(1+0.4648.*K(part_3)+0.016683.*K(part_3).^2);
-%     
+%
 %     part_4=find(K>18);
 %     f_4=(28/9).*log(2.*K(part_4))-(218/27)+(1./K(part_4)).*(-(4/3).*(log(2.*K(part_4))).^3+3.863.*(log(2.*K(part_4))).^2-11.*(log(2.*K(part_4)))+27.9);
-%     
-%     
+%
+%
 %     tottal_cross=[re^2.*alpha.*f_1 re^2.*alpha.*f_2 re^2.*alpha.*f_3 re^2.*alpha.*f_4];
 %     K_p=[K(part_1) K(part_2) K(part_3) K(part_4)];
 %     X_p=[xs_tot(part_1) xs_tot(part_2) xs_tot(part_3) xs_tot(part_4)];
-%     
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -469,8 +469,8 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
-%     
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -484,8 +484,8 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
-%     
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -500,8 +500,8 @@ print('-r300','-dpng', fname2);
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
 %     %%
-%     
-%     
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -521,8 +521,8 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
-%     
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -543,10 +543,10 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-%     
-%     
-%     
-%     
+%
+%
+%
+%
 %     ifig=ifig+1;
 %     if rflags.PLOTS ==1;
 %         figure(ifig)
@@ -554,7 +554,7 @@ print('-r300','-dpng', fname2);
 %         figure('visible','off');
 %     end
 %     subplot 311
-%     
+%
 %     nbin_plot=20;
 %     xs_gtot=linspace(min(gammacm_tot),max(gammacm_tot),nbin_plot);
 %     bar(xs_gtot,hist(gammacm_tot,nbin_plot)*weight_1*weight_2,'grouped')%,'hist','g')
@@ -573,7 +573,7 @@ print('-r300','-dpng', fname2);
 %     xlim([0 max(xs_tot+10)])
 %     xlabel('E_{CM}')
 %     ylabel(['N_{pair}'])
-%     
+%
 %     subplot 313
 %     set(gca,'FontSize',16)
 %     hold on
@@ -589,7 +589,6 @@ print('-r300','-dpng', fname2);
 %     fname = [ filename '.eps'];fname2 = [ filename '.png'];
 %     %     print('-depsc', fname);
 %     print('-r300','-dpng', fname2);
-    
-    
-end
 
+
+end

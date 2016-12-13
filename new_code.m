@@ -17,20 +17,18 @@ rflags.use_ideal_beams=0;
 
 %% Beams are by default  at L=0
 % L=1e-2;
-for scan_var=[0.99 0.999];
+for scan_var=[0];
 
     ifig=1;
 
-
     gvar.sigma_cut_at_end=2;
-    %     el.NUMBER_OF_MACROPARTICLES=0;
+
     %% dir for output
-    %     save_dir_start=[pwd '/t3_10K_For_L_' num2str(L) '_just_one_beam/'];mkdir(save_dir_start);
     save_dir_start=[pwd '/test_compton_sigma_end_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
     %% Load or create beams
     if rflags.use_ideal_beams==0
 
-        rflags.compton=1;% M??ller scattering
+        rflags.compton=1;% Compton scattering
         %         [beam_1,beam_2]=e_gammas_beams(L);
                  [beam_1,beam_2]=compton;
         %         [beam_1,beam_2]=gamma_gamma_beams(L);
@@ -52,7 +50,7 @@ for scan_var=[0.99 0.999];
 
     %% Main loop
     E_3_full=[]; E_4_full=[]; theta_3_full=[]; theta_4_full=[]; phi_3_full=[]; phi_4_full=[];pair_full=[];
-    for n_bin=[51]%[5 7 11 21 51 71 81 ]%
+    for n_bin=[5]%[5 7 11 21 51 71 81 ]%
         close all;
         ifig=1000;
         nx_bin=n_bin;
@@ -95,14 +93,12 @@ for scan_var=[0.99 0.999];
         save( [save_dir 'out_put.dat'],'Ecm_tot','gammacm_tot','delta_x','delta_y','delta_z','weight_1','weight_2','-mat')
 
 
-
-
         final_plot_for_breit_wheeler
         final_plot_for_gamma_gamma;
         final_plot_for_compton;
         final_plot_for_moller;
         final_plot_for_e_gamma(gammacm_tot.*0,gammacm_tot,Ecm_tot,weight_1,weight_2,delta_x,delta_y);
-        final_plot_for_TPP%(gammacm_tot.*0,gammacm_tot,Ecm_tot,weight_1,weight_2,delta_x,delta_y);
+        final_plot_for_TPP;
         pair_stat_plots(pair_full)
 
     end

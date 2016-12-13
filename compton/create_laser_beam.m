@@ -3,7 +3,7 @@ global el
 %% Create a laser beam
 % LASER parameteres
 NUMBER_OF_MACROPARTICLES=el.NUMBER_OF_MACROPARTICLES;
-angle_deg=0;% in degree
+angle_deg=8;% in degree
 angle=angle_deg*(pi/180); %initial scattered angle [rad]
 pulseE=0.4; %laser puse energy [J]
 sigLr=28e-6/2; % given in [m] micro meter like 2 weist w0=28;
@@ -12,7 +12,7 @@ sigt=1.5e-12; %pulse length [s]2.7e-4/3e8;%
 shifting_laser_x = 0;  %
 shifting_laser_y = 0;  %
 shifting_laser_s = 0;  %
-shifting_laser_t = 0;%shifting_laser_t;  
+shifting_laser_t = 0;%shifting_laser_t;
 STOKES=[0 0 1];% linear
 
 tr_per=1e-3;
@@ -50,7 +50,7 @@ Sx = STOKES(1).*ones(1,NUMBER_OF_MACROPARTICLES);% X polarizations
 Sy = STOKES(2).*ones(1,NUMBER_OF_MACROPARTICLES);% Y polarizations
 Ss = STOKES(3).*ones(1,NUMBER_OF_MACROPARTICLES);% s polarizations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+%
 %data for 2 first columns in cain standart data file
 K=2;% for cain data output
 genname=1;% for cain data output
@@ -58,7 +58,4 @@ K0 = ones(1,NUMBER_OF_MACROPARTICLES)*K;
 genname0 = ones(1,NUMBER_OF_MACROPARTICLES)*genname;
 %  1  2         3     4    5    6    7     8      9        10       11    12 13 14
 %  K GEN NAME Weight T(m) X(m) Y(m) S(m) E(eV) Px(eV/c) Py(eV/c) Ps(eV/c) Sx Sy Ss
-beam_phasespace=[K0;genname0;weight0;bunch_length;Xdeviation;Ydeviation;0*bunch_length;energy_deviation;Pxi;Pyi;Pzi;Sx;Sy;Ss;]';  
-
- 
-
+beam_phasespace=[K0;genname0;weight0;bunch_length;Xdeviation;Ydeviation;0*bunch_length;energy_deviation;Pxi;Pyi;Pzi;Sx;Sy;Ss;]';

@@ -35,7 +35,7 @@ view(-55,15);
 xlabel('Y')
 ylabel('Z')
 zlabel('X')
- if rflags.TPP==1
+ if rflags.TPP==1 || rflags.compton==1
      title('blu-e_{-}, red-\gamma')
 % legend('e_{-}','\gamma','Location','northwest')
  end
