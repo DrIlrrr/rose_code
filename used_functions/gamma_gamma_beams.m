@@ -9,8 +9,8 @@ global rflags gvar
 %  beam_1i=dlmread([pwd '/gamma_gamma_low/photons_data_10K_3sigma.dat'],'',0,0);%read electrons from cain
 %  beam_2i=dlmread([pwd '/gamma_gamma_low/photons_data_10K_3sigma.dat'],'',0,0);%read photons from cain
 
-beam_1i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(gvar.var_for_scan) 'MeVphotons_data.dat'],'',0,0);%read electrons from cain
-beam_2i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(gvar.var_for_scan) 'MeVphotons_data.dat'],'',0,0);%read photons from cain
+beam_1i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVphotons_data.dat'],'',0,0);%read electrons from cain
+beam_2i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVphotons_data.dat'],'',0,0);%read photons from cain
 
  % smaller_1_119999=find(beam_1i_in(:,8)<1.19e6);% crossection for gamma-gamma is just for 2.4MeV in CoM
  % smaller_2_119999=find(beam_2i_in(:,8)<1.18e6);
