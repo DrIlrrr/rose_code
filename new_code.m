@@ -1,6 +1,6 @@
 clear all; close all; clc;
 make_path
-%           stop
+%             stop
 start_date=datestr(now);
 %for new global
 global ifig save_dir save_dir_start
@@ -12,36 +12,35 @@ global ev cs cross gvar
 % ifig=1;
 
 %% main parameteres
-rflags.PLOTS =0;
+rflags.PLOTS = 0;
 rflags.use_ideal_beams=0;
 
 %% Beams are by default  at L=0
 % L=1e-2;
-for scan_var=[0];
+for scan_var=[0 5*pi/180 10*pi/180];
     
     ifig=1;
     
-    gvar.sigma_cut_at_end=2;
-    
+    gvar.sigma_cut_at_end=3;
+    alpha=scan_var;
     %% dir for output
-    save_dir_start=[pwd '/test_compton_sigma_end_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
+    save_dir_start=[pwd '/compton_turned_beam_' num2str(alpha*180/pi) '_deg_sigma_end_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
     %% Load or create beams
     if rflags.use_ideal_beams==0
         
-        rflags.gamma_gamma=1;% Compton scattering
+        rflags.compton=1;% Compton scattering
         %         [beam_1,beam_2]=e_gammas_beams(L);
-        %         [beam_1,beam_2]=compton;
-        L=0;
-                 [beam_1,beam_2]=gamma_gamma_beams(L);
+                 [beam_1,beam_2]=compton;
+        %         [beam_1,beam_2]=gamma_gamma_beams(L);
         %         [beam_1,beam_2]=e_e_beams(L);
         
     else
         [beam_1,beam_2]=create_ideal_beams;
     end
     
-    alpha=pi/4;
-    
-    [beam_2]=turn_beam(alpha,beam_2);
+    b2=beam_2;
+    [beam_2]=turn_beam(alpha,b2);
+    b2=[];
     beam_stat('beam_2_turned',beam_2)
     %% load crossection for gamma-gamma
     load_crossection_for_gamma_gamma;
@@ -55,7 +54,7 @@ for scan_var=[0];
     
     %% Main loop
     E_3_full=[]; E_4_full=[]; theta_3_full=[]; theta_4_full=[]; phi_3_full=[]; phi_4_full=[];pair_full=[];
-    for n_bin=[51]%[5 7 11 21 51 71 81 ]%
+    for n_bin=[21]%[5 7 11 21 51 71 81 ]%
         close all;
         ifig=1000;
         nx_bin=n_bin;

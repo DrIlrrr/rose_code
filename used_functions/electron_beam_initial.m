@@ -72,5 +72,3 @@ Ss = zeros(1,NUMBER_OF_MACROPARTICLES);% s polarizations
 %  1  2         3     4    5    6    7     8      9        10       11    12 13 14
 %  K GEN NAME Weight T(m) X(m) Y(m) S(m) E(eV) Px(eV/c) Py(eV/c) Ps(eV/c) Sx Sy Ss
 beam_phasespace=[K0;genname0;weight0;bunch_length;Xdeviation;Ydeviation;0*bunch_length;energy_deviation;Pxi;Pyi;Pzi;Sx;Sy;Ss;]';  
-
- 

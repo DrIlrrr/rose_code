@@ -4,14 +4,13 @@ global ifig save_dir rflags
 
 weight_1=beam_1l(2,3);weight_2=beam_2l(2,3);
 
+%%
 ifig=ifig+1;
 if rflags.PLOTS ==1;
     figure(ifig)
 else
     figure('visible','off');
 end
-
-
 set(gca,'FontSize',16)
 subplot (2,2,[1 3])
 set(gca,'FontSize',16)
@@ -22,12 +21,12 @@ hold on
 hold off
 grid on
 %to have a real delta_xyz on a plot as grid
-%     ax = gca;
-%     ax.XTick = [y_min:delta_y:y_max];
-%     ay = gca;
-%     ay.YTick = [z_min:delta_z:z_max];
-%     az = gca;
-%     az.ZTick = [x_min:delta_x:x_max];
+     ax = gca;
+     ax.XTick = [y_min:delta_y:y_max];
+     ay = gca;
+     ay.YTick = [z_min:delta_z:z_max];
+     az = gca;
+     az.ZTick = [x_min:delta_x:x_max];
 zlim([x_min x_max])
 xlim([y_min y_max])
 ylim([z_min z_max])
@@ -41,9 +40,6 @@ zlabel('X')
  end
 subplot (2,2,2)
 set(gca,'FontSize',16)
-% nbin_plot=20;%floor(max(full_spectrum(aa))-min(full_spectrum(aa)));% nbin to make spectrum per KeV
-% xs_step=linspace(min(Ecm_step),max(Ecm_step),nbin_plot);
-% bar(xs_step,hist(Ecm_step,nbin_plot)*weight_1*weight_2,'grouped')%,'hist','g')
 hist(Ecm_step,20)
 grid on
 xlabel('E cm step')
@@ -54,15 +50,14 @@ set(gca,'FontSize',16)
 hist(Ecm_tot,20)
 grid on
 xlabel('E cm total')
-suptitle(['bin x ' num2str(nx_bin) ' y ' num2str(ny_bin) ' z ' num2str(nz_bin) ' step ' num2str(qq)])
+ suptitle(['bin x ' num2str(nx_bin) ' y ' num2str(ny_bin) ' z ' num2str(nz_bin) ' step ' num2str(qq)])
 filename = [save_dir 'EXP_fig_' num2str(ifig)];
-fname = [ filename '.eps'];fname2 = [ filename '.png'];
-% print('-depsc', fname);
-print('-r300','-dpng', fname2);
+fname = [ filename '.png'];
+print('-dpng', fname);
 
 
 
-
+%%
 ifig=ifig+1;
 if rflags.PLOTS ==1;
     figure(ifig)
@@ -96,6 +91,8 @@ filename = [save_dir '2anim_EXP_fig_' num2str(ifig)];
 fname = [ filename '.png'];
 print('-dpng', fname);
 
+
+%%
 ifig=ifig+1;
 if rflags.PLOTS ==1;
     figure(ifig)
@@ -129,7 +126,39 @@ filename = [save_dir '3anim_EXP_fig_' num2str(ifig)];
 fname = [ filename '.png'];
 print('-dpng', fname);
 
+%%
+ifig=ifig+1;
+if rflags.PLOTS ==1;
+    figure(ifig)
+else
+    figure('visible','off');
+end
 
+
+set(gca,'FontSize',16)
+hold on
+%    scatter3(y_min:delta_y:y_max,z_min:delta_z:z_max,x_min:delta_x:x_max,'k')
+scatter3(beam_1l(:,6),beam_1l(:,4),beam_1l(:,5),'.b')
+scatter3(beam_2l(:,6),beam_2l(:,4),beam_2l(:,5),'.r')
+hold off
+grid on
+%to have a real delta_xyz on a plot as grid
+    ax = gca;
+    ax.XTick = [y_min:delta_y:y_max];
+    ay = gca;
+    ay.YTick = [z_min:delta_z:z_max];
+    az = gca;
+    az.ZTick = [x_min:delta_x:x_max];
+% zlim([x_min x_max])
+% xlim([y_min y_max])
+% ylim([z_min z_max])
+ view(-90,0);
+xlabel('Y')
+ylabel('Z')
+zlabel('X')
+filename = [save_dir '4anim_EXP_fig_' num2str(ifig)];
+fname = [ filename '.png'];
+print('-dpng', fname);
 % %%
 % figure(500)
 % hold on

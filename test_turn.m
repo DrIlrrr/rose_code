@@ -24,7 +24,7 @@ beam_1i=dlmread([pwd '/gamma_gamma_BW_ideal/260MeVphotons_data.dat'],'',0,0);%re
 beam_2i=dlmread([pwd '/gamma_gamma_BW_ideal/260MeVphotons_data.dat'],'',0,0);%read photons from cain
 
 L=0;
-gvar.sigma_cut_at_end=1;
+gvar.sigma_cut_at_end=10;
 [beam_1,beam_2]=cut_tails_at_end(beam_1i,beam_2i,0);
 
 [beam_1]=beam_drift(beam_1i,L);
@@ -59,23 +59,29 @@ beam_2(:,4)=beam_2(:,4)-min(beam_2(:,4));
 
 %%
 
-alpha=pi/2;
- 
-  [beam_2]=turn_beam(alpha,beam_2);
-% 
-%  figure(ifig)
-% ifig=ifig+1;
-% set(gca,'FontSize',16)
-% hold on
-% scatter3(beam_2(:,5),beam_2(:,6),beam_2(:,4),'.g')
-% scatter3(beam_2t(:,5),beam_2t(:,6),beam_2t(:,4),'.b')
-% hold off
-% grid on
-% xlabel('X')
-% ylabel('Y')
-% zlabel('Z')
-%  
-%   stop
+for alpha=[0:0.01:pi];
+ beam_2t=[];
+  [beam_2t]=turn_beam(alpha,beam_2);
+
+ figure(ifig)
+ifig=ifig+1;
+set(gca,'FontSize',16)
+hold on
+scatter3(beam_2(:,5),beam_2(:,6),beam_2(:,4),'.g')
+scatter3(beam_2t(:,5),beam_2t(:,6),beam_2t(:,4),'.b')
+hold off
+grid on
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title(['alpha=' num2str(alpha) ' [rad]; alpha*180/pi=' num2str(alpha*180/pi) ' [deg];'])
+view(-90,0)
+fname2 = [ 'turn_beam_' num2str(ifig) '.png'];
+print('-r300','-dpng', fname2); 
+
+
+end
+   stop
  
 %  beam_2=[];
 %  beam_2=beam_2t;
