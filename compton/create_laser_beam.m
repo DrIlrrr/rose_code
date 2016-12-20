@@ -6,7 +6,7 @@ NUMBER_OF_MACROPARTICLES=el.NUMBER_OF_MACROPARTICLES;
 angle_deg=8;% in degree
 angle=angle_deg*(pi/180); %initial scattered angle [rad]
 pulseE=0.4; %laser puse energy [J]
-sigLr=14e-6/2; % given in [m] micro meter like 2 weist w0=28;
+sigLr=14e-6; % given in [m] micro meter like 2 weist w0=28;
 laserwl=515e-9; % laser wavelenth [m] nano meters
 sigt=1.5e-12; %pulse length [s]2.7e-4/3e8;%
 shifting_laser_x = 0;  %

@@ -4,7 +4,7 @@ el=struct('NAME_OF_FLAGS',1);
 
 %% electron bunch parameters
 el.chargebunch = 250e-12;%Charge per electrons bunch [c] pico->10^-12
-el.NUMBER_OF_MACROPARTICLES=5000;%1e5; % Number of macroparticles
+el.NUMBER_OF_MACROPARTICLES=10000;%1e5; % Number of macroparticles
 
 el.bunch_length_initial=2.7e-4; % intial bunch length [m]
 
