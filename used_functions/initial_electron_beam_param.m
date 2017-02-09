@@ -1,4 +1,5 @@
-function [el] = global_
+function [el] = initial_electron_beam_param
+
 % create global flags to run choosen type of simulations
 el=struct('NAME_OF_FLAGS',1);
 

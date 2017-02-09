@@ -10,7 +10,7 @@ mkdir(save_dir_plot);
 
 %  1  2         3     4    5    6    7     8      9        10       11    12 13 14
 %  K GEN NAME Weight T(m) X(m) Y(m) S(m) E(eV) Px(eV/c) Py(eV/c) Ps(eV/c) Sx Sy Ss
-% WEIGHT=3;
+WEIGHT=3;
 TIME_COORDINATE=4;%now we start use s(m) for caine
 X_COORDINATE=5;
 Y_COORDINATE=6;
@@ -197,6 +197,7 @@ fprintf(fileID,'gamma = %10.5e\n',gamma);
 fprintf(fileID,'delta_gamma = %10.5e\n',delta_gamma);
 fprintf(fileID,'----------------------------------------------------\n');
 fprintf(fileID,'NMP = %10.5e\n',n_m_p);
+fprintf(fileID,'N P = %10.5e\n',n_m_p*beam_in(1,3));
 fprintf(fileID,'zeta mean = %10.5e\n',mean(electron_angle));
 fprintf(fileID,'zeta std = %10.5e\n',std(electron_angle));
 fclose(fileID);
@@ -224,6 +225,7 @@ fprintf(fileID,'$\\gamma = %10.5e $\\\\ \n',gamma);
 fprintf(fileID,'$\\delta\\gamma = %10.5e $\\\\ \n',delta_gamma);
 %fprintf(fileID,'\n');
 fprintf(fileID,'NMP $= %10.5e $\n',n_m_p);
+fprintf(fileID,'N P $= %10.5e $\n',n_m_p*beam_in(1,3));
 fprintf(fileID,'$\\zeta = %10.5e $\n',mean(electron_angle));
 fclose(fileID);
 %end

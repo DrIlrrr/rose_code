@@ -70,9 +70,18 @@ for niy=1:1:ny_bin%+1
                         cos_alpha=[];cos_theta=[];theta_3=[];theta_4=[];phi_3=[];phi_4=[];E_3=[];E_4=[];Vq=[];Ecm_pair=[];gamma_cm_pair=[];
                         %% Gamma-Gamma
                         if rflags.gamma_gamma==1;
-                            [cos_alpha,cos_theta,theta_3,theta_4,phi_3,phi_4,E_3,E_4,Vq,Ecm_pair,gamma_cm_pair]=gamma_gamma_monte_carlo_event_generator...
-                                (beam_1_in_cell(goi1,8),beam_1_in_cell(goi1,9),beam_1_in_cell(goi1,10),beam_1_in_cell(goi1,11),beam_1_in_cell(goi1,12),beam_1_in_cell(goi1,13),beam_1_in_cell(goi1,14),...
-                                beam_2_in_cell(goi2,8),beam_2_in_cell(goi2,9),beam_2_in_cell(goi2,10),beam_2_in_cell(goi2,11),beam_2_in_cell(goi2,12),beam_2_in_cell(goi2,13),beam_2_in_cell(goi2,14));
+%                             m_1=0;% photon rest mass
+%                             m_2=0;% photon rest mass
+%                             Ecm_pair=sqrt(m_1^2+m_2^2+2*beam_1_in_cell(goi1,8)*beam_2_in_cell(goi2,8)-2*(beam_1_in_cell(goi1,9)*beam_2_in_cell(goi2,9)+beam_1_in_cell(goi1,10)*beam_2_in_cell(goi2,10)+beam_1_in_cell(goi1,11)*beam_2_in_cell(goi2,11)));
+% 
+%                              if Ecm_pair>0.001e6 %if smaller cross-section is too small
+%                                 work_BW=0;
+                                [cos_alpha,cos_theta,theta_3,theta_4,phi_3,phi_4,E_3,E_4,Vq,Ecm_pair,gamma_cm_pair]=gamma_gamma_monte_carlo_event_generator...
+                                    (beam_1_in_cell(goi1,8),beam_1_in_cell(goi1,9),beam_1_in_cell(goi1,10),beam_1_in_cell(goi1,11),beam_1_in_cell(goi1,12),beam_1_in_cell(goi1,13),beam_1_in_cell(goi1,14),...
+                                    beam_2_in_cell(goi2,8),beam_2_in_cell(goi2,9),beam_2_in_cell(goi2,10),beam_2_in_cell(goi2,11),beam_2_in_cell(goi2,12),beam_2_in_cell(goi2,13),beam_2_in_cell(goi2,14));
+%                                 else
+%                                 work_BW=1;
+%                             end
                             %% Compton Back Scattering
                         elseif rflags.compton==1;
                             [cos_alpha,cos_theta,theta_3,theta_4,phi_3,phi_4,E_3,E_4,Vq,Ecm_pair,gamma_cm_pair]=compton_monte_carlo_event_generator...
@@ -131,15 +140,17 @@ for niy=1:1:ny_bin%+1
                             [cos_alpha,cos_theta,theta_3,theta_4,phi_3,phi_4,E_3,E_4,Vq,Ecm_pair,gamma_cm_pair]=moller_monte_carlo_event_generator...
                                 (beam_1_in_cell(goi1,8),beam_1_in_cell(goi1,9),beam_1_in_cell(goi1,10),beam_1_in_cell(goi1,11),beam_1_in_cell(goi1,12),beam_1_in_cell(goi1,13),beam_1_in_cell(goi1,14),...
                                 beam_2_in_cell(goi2,8),beam_2_in_cell(goi2,9),beam_2_in_cell(goi2,10),beam_2_in_cell(goi2,11),beam_2_in_cell(goi2,12),beam_2_in_cell(goi2,13),beam_2_in_cell(goi2,14));
-                            Ecm_step=[Ecm_step; Ecm_pair];
-                            gamma_cm_step=[gamma_cm_step; gamma_cm_pair];
+                            %  may be this must be uncoment due to the  work_BW=0;
+                            %  try if Moller will crush
+                            %                                Ecm_step=[Ecm_step; Ecm_pair];
+                            %                                gamma_cm_step=[gamma_cm_step; gamma_cm_pair];
                             
                         end
-                       
+                        
                         if (rflags.e_gamma+rflags.TPP)==0;
-                           
+                            
                             if  work_BW==0;
-                               
+                                
                                 pair_info=[Vq E_3 E_4 theta_3 theta_4 phi_3 phi_4 cos_alpha cos_theta Ecm_pair gamma_cm_pair];
                                 pair_step=[pair_info; pair_step];
                                 

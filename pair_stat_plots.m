@@ -3,7 +3,7 @@ function pair_stat_plots(pair_full)
 global ifig save_dir
 global rflags 
 filename=[save_dir 'pair_info_'];
-
+if rflags.e_gamma==0
 
 
 if rflags.PLOTS ==1;
@@ -73,5 +73,5 @@ print('-r300','-dpng', fname2); %print('-depsc', fname);
 
 
 
-
+end
 

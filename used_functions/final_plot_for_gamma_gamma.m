@@ -9,6 +9,42 @@ if rflags.gamma_gamma==1;
     ad=load([save_dir 'out_put.dat'],'-mat');
     % pair_info=[Vq E_3 E_4 theta_3 theta_4 phi_3 phi_4 cos_alpha cos_theta Ecm_pair gamma_cm_pair];
     
+        %% histogram beam1 vs theta and Energy_lab
+    ifig=ifig+1;
+    if rflags.PLOTS ==1;
+        figure(ifig)
+    else
+        figure('visible','off');
+    end
+    as=histogram2(pair_full(:,2),pair_full(:,4),[50 50])
+    xlabel('Energy','FontSize',20)
+    ylabel('\theta','FontSize',20)
+    zlabel('# \gamma_1 ','FontSize',20)
+    %
+    fname = [ filename num2str(ifig) '.eps'];fname2 = [ filename num2str(ifig) '.png'];
+    print('-r300','-dpng', fname2); %print('-depsc', fname);
+    
+    
+    
+    
+    %% histogram beam 2 vs theta and Energy_lab
+    ifig=ifig+1;
+    if rflags.PLOTS ==1;
+        figure(ifig)
+    else
+        figure('visible','off');
+    end
+    as=histogram2(pair_full(:,3),pair_full(:,5),[50 50])
+    xlabel('Energy','FontSize',20)
+    ylabel('\theta','FontSize',20)
+    zlabel('# \gamma_2 ','FontSize',20)
+    %
+    fname = [ filename num2str(ifig) '.eps'];fname2 = [ filename num2str(ifig) '.png'];
+    print('-r300','-dpng', fname2); %print('-depsc', fname);
+    
+    
+    
+    
     %% histogram N pair vs theta and Energy_lab
     ifig=ifig+1;
     if rflags.PLOTS ==1;
@@ -60,9 +96,9 @@ if rflags.gamma_gamma==1;
     
     
     %% load diff crossection
-    ev=load('/home/illya/Dropbox/rabota/rose_code/used_functions/rs_grid.dat','ascii')';
-    cs=load('/home/illya/Dropbox/rabota/rose_code/used_functions/w_grid.dat','ascii')';
-    cross=load('/home/illya/Dropbox/rabota/rose_code/used_functions/cs_grid.dat','ascii')';
+    ev=load([pwd '/used_functions/rs_grid.dat'],'ascii')';
+    cs=load([pwd '/used_functions/w_grid.dat'],'ascii')';
+    cross=load([pwd '/used_functions/cs_grid.dat'],'ascii')';
     
     
     
@@ -127,7 +163,35 @@ if rflags.gamma_gamma==1;
     fname = [ filename num2str(ifig) '.eps'];fname2 = [ filename num2str(ifig) '.png'];
     print('-r300','-dpng', fname2); %print('-depsc', fname);
     
-    
+    %%
+    ifig=ifig+1;
+    if rflags.PLOTS ==1;
+        figure(ifig)
+    else
+        figure('visible','off');
+    end
+    % Create figure
+    figure1 = figure;
+    % Create axes
+    axes1 = axes('Parent',figure1);
+    hold(axes1,'on');
+    % Create bar
+    bar(ev_l,VCE);
+    % Create loglog
+    loglog(en_x,tot_e_cross);
+    % Create loglog
+    loglog(ev_l,VCE,'Marker','o','LineStyle','none');
+    % Create xlabel
+    xlabel('E_{CoM}');
+    % Create ylabel
+    ylabel('cross-section');
+    % Create title
+    title('bar and dots are interpolated data');
+    % Set the remaining axes properties
+    set(axes1,'XScale','log','YScale','log');
+    fname = [ filename num2str(ifig) '.eps'];fname2 = [ filename num2str(ifig) '.png'];
+    print('-r300','-dpng', fname2); %print('-depsc', fname);
+    %%
     ifig=ifig+1;
     if rflags.PLOTS ==1;
         figure(ifig)

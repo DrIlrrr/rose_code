@@ -8,11 +8,14 @@ YES=1; yes=1; NO=0; no=0;
 rflags.name_of_job=[''];
 rflags.PLOTS =yes;
 
-rflags.e_gamma=0;%for muon prodaction
+rflags.e_gamma=0;%for muon production
 rflags.gamma_gamma=0;
 rflags.breit_wheeler=0;
 rflags.compton=0;%Compton Back Scattering
 rflags.TPP=0;%triplet pair production
 rflags.moller=0;
 
+
+
+rflags.low_energy_gamma_gamma=0;
 

@@ -1,5 +1,5 @@
 function [cos_alpha,cos_theta,theta_3,theta_4,phi_3,phi_4,E_3,E_4,Vq,Ecm_pair,gamma_cm]=gamma_gamma_monte_carlo_event_generator(E_1,Px_1,Py_1,Pz_1,Sx_1,Sy_1,Sz_1,E_2,Px_2,Py_2,Pz_2,Sx_2,Sy_2,Sz_2)
-global ev cs cross
+global ev cs cross rflags
 
 
 
@@ -12,7 +12,9 @@ cos_alpha=(Px_1*Px_2+Py_1*Py_2+Pz_1*Pz_2)/(sqrt(Px_1^2+Py_1^2+Pz_1^2)*sqrt(Px_2^
 
 %% Generate a theta using monte-carlo rejection_method
 % energy of CoM here in MeV;Vq is value of differential crossection
+
 [cos_theta,Vq]=rejection_method(Ecm_pair/1e6);
+
 % theta_out=acos(cos_theta);
 %% Generate a phi as uniform on [0 2*pi]
 phi=2*pi*rand(1);

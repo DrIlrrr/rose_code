@@ -1,0 +1,19 @@
+Electron beam tracked along the high energy ideal beam line.
+
+Electron beam non norm Emittances:
+Emit X = 4.17415e-10
+Emit Y = 4.28991e-10
+Electron beam normalized Emittances:
+Emit X n = 4.23938e-07
+Emit Y n = 4.43226e-07
+
+sigma_x = 1.72247e+01 [um]
+sigma_y = 1.64559e+01 [um]
+mean_energy = 5.29847e+02 [MeV]
+std_energy =  2.37000e-01 [MeV]
+energy_spread = 4.46285e-04
+gamma = 1.03688e+03
+delta_gamma = 4.63796e-01
+----------------------------------------------------
+NMP = 3.00000e+04
+!zeta = 1.24055e-08 what is?

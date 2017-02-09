@@ -1,6 +1,7 @@
 clear all; close all; clc;
 make_path
-%           stop
+
+%   stop
 start_date=datestr(now);
 %for new global
 global ifig save_dir save_dir_start
@@ -17,34 +18,36 @@ rflags.use_ideal_beams=0;
 
 %% Beams are by default  at L=0
 % L=1e-2;
-for scan_var=[0 1*pi/180 2*pi/180 3*pi/180 4*pi/180 5*pi/180 10*pi/180];
-
+for scan_var=[1000 1600];
+    rflags.name_of_the_cain_sim=['cain_out_' num2str(scan_var) '_GeV_ES_0.1_norm_em_0.0002'];
     ifig=1;
-el.NUMBER_OF_MACROPARTICLES=1e4; % Number of macroparticlesel.NUMBER_OF_MACROPARTICLES=10000;%1e5; % Number of macroparticles
-    gvar.sigma_cut_at_end=3;
-    alpha=scan_var;
+    gvar.sigma_cut_at_end=2;
+%     gvar.el_energy=250;
     %% dir for output
-    save_dir_start=[pwd '/b14_compton_' num2str(el.NUMBER_OF_MACROPARTICLES) '_m_turned_beam_' num2str(alpha*180/pi) '_deg_sigma_end_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
+    save_dir_start=[pwd '/out_muons_sigma_cut_' num2str(gvar.sigma_cut_at_end) '_' rflags.name_of_the_cain_sim '/'];mkdir(save_dir_start);
     %% Load or create beams
     if rflags.use_ideal_beams==0
-
-        rflags.compton=1;% Compton scattering
-        %         [beam_1,beam_2]=e_gammas_beams(L);
-                 [beam_1,beam_2]=compton;
+%         rflags.low_energy_gamma_gamma=0;
+        rflags.e_gamma=1;%
+        L=0
+        %         [beam_1,beam_2]=FEL_gamma_gamma;
+                  [beam_1,beam_2]=e_gammas_beams(L);
+        %         [beam_1,beam_2]=compton(L);
         %         [beam_1,beam_2]=gamma_gamma_beams(L);
         %         [beam_1,beam_2]=e_e_beams(L);
 
     else
         [beam_1,beam_2]=create_ideal_beams;
     end
+    %% Turn beam on angle alpha
+    %     alpha=0;
+    %     b2=beam_2;
+    %     [beam_2]=turn_beam(alpha,b2);
+    %     b2=[];
+    %     beam_stat('beam_2_turned',beam_2)
 
-    b2=beam_2;
-    [beam_2]=turn_beam(alpha,b2);
-    b2=[];
-    beam_stat('beam_2_turned',beam_2)
     %% load crossection for gamma-gamma
     load_crossection_for_gamma_gamma;
-
 
     %% Found a limits for greed
     [x_max,x_min,y_max,y_min,z_max,z_min,l_max]=findind_min_max_of_grid(beam_1,beam_2);
@@ -54,7 +57,7 @@ el.NUMBER_OF_MACROPARTICLES=1e4; % Number of macroparticlesel.NUMBER_OF_MACROPAR
 
     %% Main loop
     E_3_full=[]; E_4_full=[]; theta_3_full=[]; theta_4_full=[]; phi_3_full=[]; phi_4_full=[];pair_full=[];
-    for n_bin=[51 11]%[5 7 11 21 51 71 81 ]%
+    for n_bin=[51]%[5 7 11 21 51 71 81 ]%
         close all;
         ifig=1000;
         nx_bin=n_bin;

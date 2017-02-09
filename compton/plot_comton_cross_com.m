@@ -1,6 +1,6 @@
 % function plot_comton_cross_com
 clear all; close all; clc;
-E_grid=linspace(0.511e6,0.55e6,100);
+E_grid=linspace(0.511e6,36e6,100);
 cos_theta_grid=linspace(-1,1,100);
 qq=0;cross=[];X=[];Y=[];
 for Ecm_pair=E_grid
