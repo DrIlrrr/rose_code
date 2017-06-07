@@ -11,7 +11,7 @@ rflags.name_of_job=[''];
 rflags.PLOTS =yes;
 
 
-% rflags.chargebunch = 1e-12;%Charge per electrons bunch [c] 
+% rflags.chargebunch = 20e-9;%Charge per electrons bunch [c] 
 
 % LASER parameteres
 rflags.angle_deg=0;% in degree

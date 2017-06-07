@@ -18,13 +18,13 @@ rflags.use_ideal_beams=0;
 
 %% Beams are by default  at L=0
 % L=1e-2;
-for scan_var=[1000 1600];
-    rflags.name_of_the_cain_sim=['cain_out_' num2str(scan_var) '_GeV_ES_0.1_norm_em_0.0002'];
+for scan_var=[1 2 3];
+    rflags.name_of_the_cain_sim=['Qe_20_Pc_pulseE_' num2str(scan_var) 'Gev_200MeV_cut'];
     ifig=1;
-    gvar.sigma_cut_at_end=2;
+    gvar.sigma_cut_at_end=0.5;
 %     gvar.el_energy=250;
     %% dir for output
-    save_dir_start=[pwd '/out_muons_sigma_cut_' num2str(gvar.sigma_cut_at_end) '_' rflags.name_of_the_cain_sim '/'];mkdir(save_dir_start);
+    save_dir_start=[pwd '/2out_muons_' rflags.name_of_the_cain_sim 'sigma_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
     %% Load or create beams
     if rflags.use_ideal_beams==0
 %         rflags.low_energy_gamma_gamma=0;
@@ -57,7 +57,7 @@ for scan_var=[1000 1600];
 
     %% Main loop
     E_3_full=[]; E_4_full=[]; theta_3_full=[]; theta_4_full=[]; phi_3_full=[]; phi_4_full=[];pair_full=[];
-    for n_bin=[51]%[5 7 11 21 51 71 81 ]%
+    for n_bin=[101]%[5 7 11 21 51 71 81 ]%
         close all;
         ifig=1000;
         nx_bin=n_bin;

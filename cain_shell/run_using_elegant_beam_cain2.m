@@ -14,10 +14,15 @@ rflags.PLOTS =1;
 just_plots=0;
 
 
-for var_for_scan=1:1:1;
+for var_for_scan=[1];
 
+  %% laser
+    rflags.pulseE=5; %laser puse energy [J]
+    rflags.sigLr=5;%/2; % given in [mu m] micro meter like 2 weist w0=28;
+    rflags.laserwl=800; % laser wavelenth [nm] nano meters
+    rflags.sigt=5; %pulse length [ps]
 
-    rflags.chargebunch = 19.3e-9;%Charge per electrons bunch [c]
+    rflags.chargebunch = 20e-9;%Charge per electrons bunch [c]
     defoc_param=1;%defocusing parameter by defoult 1 is no defocusing
 
     %     name_n=['Qe_' num2str(rflags.chargebunch*1e12) 'Pc_pulseE_' num2str(rflags.pulseE) '_energy_factor_' num2str(var_for_scan)];
@@ -25,10 +30,16 @@ for var_for_scan=1:1:1;
     beam_phasespace=dlmread(['nicola_beam_24_01_2016/005/Phase_space_09.dat'],'',0,0);
 
     beam_phasespace(:,5)=beam_phasespace(:,5)./3e8;
-    beam_phasespace(:,6)=6.*beam_phasespace(:,6)./1e6;
+    beam_phasespace(:,6)=beam_phasespace(:,6)./1e6;
+    down_limit_to_cut_energy=200; % in MeV
+    cut_beam=find(beam_phasespace(:,6)>down_limit_to_cut_energy/0.511);
+    newbeam=beam_phasespace(cut_beam,:);
+    beam_phasespace=[];
+    beam_phasespace=newbeam;
+    newbeam=[];
 
 
-    name_n=['Qe_1_Pc_pulseE_' num2str(rflags.pulseE) '_energy_*6_500MeV_cut'];
+    name_n=['test_Qe_20_Pc_pulseE_sum_Gev_200MeV_cut'];
     BASE_DIRECTORY = [pwd '/' name_n '/'];
 
 
@@ -44,20 +55,12 @@ for var_for_scan=1:1:1;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     [beam_property]=formating_beam_for_cain(beam_phasespace,1);
 
+    %%just for
+    %figure(1)
+    %hist(beam_property(8,:),20);
+    %title(['mean E = ' num2str(mean(beam_property(8,:))/1e6) 'MeV' ]);
 
-    cut_beam=find(beam_property(8,:)>500e6);
-
-    newbeam=beam_property(:,cut_beam);
-
-    beam_property=[];
-    beam_property=newbeam;
-    newbeam=[];
-
-
-  %  figure(1)
-  %  hist(beam_property(8,:),20);
-
-    %     stop
+   % stop
 
     if just_plots==0
         for turn_number=1:1:1
