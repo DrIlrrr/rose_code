@@ -1,7 +1,7 @@
 clear all; close all; clc;
 make_path
 
-%   stop
+%    stop
 start_date=datestr(now);
 %for new global
 global ifig save_dir save_dir_start
@@ -13,26 +13,27 @@ global ev cs cross gvar
 % ifig=1;
 
 %% main parameteres
-rflags.PLOTS = 0;
+rflags.PLOTS = 1;
 rflags.use_ideal_beams=0;
 
 %% Beams are by default  at L=0
 % L=1e-2;
-for scan_var=[1000 2000 3000];
-    rflags.name_of_the_cain_sim=['ideal_copy_real_' num2str(scan_var) '_GeV_ES_0.1_norm_em_0.0007'];
+for scan_var=[1];
+    %rflags.name_of_the_cain_sim=['ideal_copy_real_' num2str(scan_var) '_GeV_ES_0.1_norm_em_0.0007'];
     ifig=1;
     gvar.sigma_cut_at_end=2;
 %     gvar.el_energy=250;
     %% dir for output
-    save_dir_start=[pwd '/out_muons_' rflags.name_of_the_cain_sim 'sigma_cut_' num2str(gvar.sigma_cut_at_end) '/'];mkdir(save_dir_start);
+    save_dir_start=[pwd '/out_compton/'];mkdir(save_dir_start);
     %% Load or create beams
     if rflags.use_ideal_beams==0
 %         rflags.low_energy_gamma_gamma=0;
-        rflags.e_gamma=1;%
+%         %
+
         L=0
         %         [beam_1,beam_2]=FEL_gamma_gamma;
-                  [beam_1,beam_2]=e_gammas_beams(L);
-        %         [beam_1,beam_2]=compton(L);
+        %         [beam_1,beam_2]=e_gammas_beams(L);
+                 [beam_1,beam_2]=compton(L);
         %         [beam_1,beam_2]=gamma_gamma_beams(L);
         %         [beam_1,beam_2]=e_e_beams(L);
 
@@ -57,7 +58,7 @@ for scan_var=[1000 2000 3000];
 
     %% Main loop
     E_3_full=[]; E_4_full=[]; theta_3_full=[]; theta_4_full=[]; phi_3_full=[]; phi_4_full=[];pair_full=[];
-    for n_bin=[51]%[5 7 11 21 51 71 81 ]%
+    for n_bin=[21]%[5 7 11 21 51 71 81 ]%
         close all;
         ifig=1000;
         nx_bin=n_bin;
@@ -106,7 +107,9 @@ for scan_var=[1000 2000 3000];
         final_plot_for_moller;
         final_plot_for_e_gamma(gammacm_tot.*0,gammacm_tot,Ecm_tot,weight_1,weight_2,delta_x,delta_y);
         final_plot_for_TPP;
-        pair_stat_plots(pair_full)
+        pair_stat_plots(pair_full);
+        pair_stat_plots_collimate_in_theta(pair_full,9e-3);
+
 
     end
 end

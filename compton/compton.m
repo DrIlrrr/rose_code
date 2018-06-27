@@ -7,20 +7,20 @@ rflags.compton=1;
 
 %% create a electron beam
 % % el.NUMBER_OF_MACROPARTICLES=1e3;
-% [beam_1] = electron_beam_initial;
+ [beam_1i] = electron_beam_initial;
 % 
 %% create a laser beam
-% [beam_2] = create_laser_beam;
+ [beam_2i] = create_laser_beam;
 
 %% load beam
-beam_1i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVelectrons_data.dat'],'',1,0);%read electrons from cain
-beam_2i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVphotons_data.dat'],'',0,0);%read photons from cain
+% beam_1i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVelectrons_data.dat'],'',1,0);%read electrons from cain
+% beam_2i=dlmread([pwd '/gamma_gamma_BW_ideal/' num2str(260) 'MeVphotons_data.dat'],'',0,0);%read photons from cain
 
 [beam_1]=beam_drift(beam_1i,L);
 [beam_2]=beam_drift(beam_2i,L);
 %%
- beam_1(:,4)=-beam_1(:,7);
- beam_2(:,4)=-beam_2(:,7);
+%  beam_1(:,4)=-beam_1(:,7);
+%  beam_2(:,4)=-beam_2(:,7);
 
 %% create a second beam as the reflection of first one
 beam_2(:,4)=-beam_2(:,4);

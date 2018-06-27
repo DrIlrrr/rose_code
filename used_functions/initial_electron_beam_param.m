@@ -5,14 +5,14 @@ el=struct('NAME_OF_FLAGS',1);
 
 %% electron bunch parameters
 el.chargebunch = 250e-12;%Charge per electrons bunch [c] pico->10^-12
-el.NUMBER_OF_MACROPARTICLES=10000;%1e5; % Number of macroparticles
+el.NUMBER_OF_MACROPARTICLES=5000;%1e5; % Number of macroparticles
 
 el.bunch_length_initial=2.7e-4; % intial bunch length [m]
 
 el.sigma_e_x=17.2*1e-6; % IP vertical electron beam size [m]
 el.sigma_e_y=16.4*1e-6; % IP horizontal electron beam size [m]
 
-el.initial_beam_energy_MeV=529.8; % initial energy in [MeV]
+el.initial_beam_energy_MeV=100; % initial energy in [MeV]
 
 el.energy_spread_initial=0.044;%  initial relative energy spread (not in [%])
 

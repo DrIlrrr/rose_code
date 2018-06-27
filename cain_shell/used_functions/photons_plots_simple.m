@@ -32,9 +32,9 @@ faa=find(abs(phot_angle)<5e-2);
 
 figure(ifig)
 ifig=ifig+1;
-hold on
+%hold on
 plot(phot_angle(faa),full_spectrum(faa),'.b')
-hold off
+%hold off
 grid on
 set(gca,'FontSize',16)
 ylabel('energy of scattered photons')
